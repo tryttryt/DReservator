@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+    <h1>Lista sal do ćwiczeń:</h1>
+        <ul>
+            {% for r in rooms %}
+            <li>Nazwa: {{r.name}}</li>
+            <li>Adres: {{r.address}}</li>
+            <li>Opis: {{r.description}}</li>
+            <a href="/edit_room/{{r.pk}}"><input type="button" class="btn btn-secondary" value="Edytuj" /></a>
+            <a href="/delete_room/{{r.pk}}"><input type="button" class="btn btn-secondary" value="Usuń" /></a>
+            <br>
+            <br>
+            {%  endfor  %}
+        </ul>
+
+     {% endblock %}

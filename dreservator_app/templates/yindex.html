@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <title>HOME</title>
+</head>
+<body>
+    {# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+<form action="/url/to/submit/" method="post" class="form">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "star" %} Submit
+    </button>
+  {% endbuttons %}
+</form>
+
+        <a href="{% url 'mainview' %}"> Home </a>
+    	<a href="{% url 'usersview' %}"> Użytkownicy </a>
+    	<a href="{% url 'roomsview' %}"> Sale </a>
+        <a href="{% url 'reservationsview' %}"> Rezerwacje </a>
+        <a href="{% url 'add_user' %}"> Dodaj użytkownika </a>
+        <a href="{% url 'add_room' %}"> Dodaj salę </a>
+        <a href="{% url 'add_reservation' %}"> Dodaj rezerwację </a>
+        <a href="{% url 'search_user' %}"> Szukaj użytkownika </a>
+        <a href="{% url 'search_reservation' %}"> Szukaj rezerwacji </a>
+
+        {% block content %}
+        <h1>DReservator !</h1>
+        <h2>Hator, hator</h2>
+        <br>
+
+        <ul>
+            <li><a href="{% url 'login' %}">Ooo ... weź się zaloguj</a></li>
+        </ul>
+        {% endblock %}
+        {% block footer %}
+        <footer>
+            <br>
+                <div style="float:left">
+                {% if user.is_authenticated %}
+                    Zalogowany: {{ user.username }}
+                    <br>
+                    <a href="{% url 'mylogout' %}"> Wyloguj </a>
+                {% else %}
+                    <br>
+                    <a href="{% url 'login' %}"> Zaloguj </a>
+                    <a href="{% url 'register' %}"> Zarejestruj się </a>
+                {% endif %}
+
+            </div>
+        </footer>
+        {% endblock %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

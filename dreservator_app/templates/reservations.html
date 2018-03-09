@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+    <h1>Lista rezerwacji:</h1>
+        <ul>
+            {% for r in reservations %}
+            <li>Imię i nazwisko: {{r.user.first_name}} {{r.user.last_name}}</li>
+            <li>Data: {{r.date}}</li>
+            <li>Od: {{r.reservation_time_start}}</li>
+            <li>Do: {{r.reservation_time_end}}</li>
+            <li>Sala: {{r.rooms.name}}</li>
+            <li>Rodzaj zajęć: {{r.activities_type}}</li>
+            <li>Instruktor: {{r.teacher.username}}</li>
+            <a href="/edit_reservation/{{r.pk}}"><input type="button" class="btn btn-secondary" value="Edytuj" /></a>
+            <a href="/delete_reservation/{{r.pk}}"><input type="button" class="btn btn-secondary" value="Usuń" /></a>
+            <br>
+            <br>
+            {%  endfor  %}
+        </ul>
+
+     {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+    <h1>Lista Użytkowników:</h1>
+        <ul>
+            {% for u in users %}
+            {% if u.user.is_active is True %}
+            <li>Imię i Nazwisko: {{u.user.first_name}} {{u.user.last_name}}</li>
+            <li>Adres: {{u.address}}</li>
+            <li>Username: {{u.user.username}}</li>
+            <li>Telefon: {{u.phone}}</li>
+            <li>Email: {{u.user.email}}</li>
+            <a href="/edit_user/{{u.user.id}}"><input type="button" class="btn btn-secondary" value="Edytuj" /></a>
+            <a href="/delete_user/{{u.user.id}}"><input type="button" class="btn btn-secondary" value="Usuń" /></a>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+
+
+        </ul>
+
+     {% endblock %}

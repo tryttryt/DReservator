@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+        <h1>Szukaj rezerwacji:</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+                <table>
+            {{ form.as_table }}
+            </table>
+            <input type="submit" class="btn btn-secondary" value="Szukaj" />
+            </form>
+            <br>
+            <ul>
+            {% for r in reservat %}
+                <li>Imię i nazwisko: {{r.user.first_name}} {{r.user.last_name}}</li>
+                <li>Data: {{r.date}}</li>
+                <li>Od: {{r.reservation_time_start}}</li>
+                <li>Do: {{r.reservation_time_end}}</li>
+                <li>Sala: {{r.rooms.name}}</li>
+                <li>Rodzaj zajęć: {{r.activities_type}}</li>
+                <li>Instruktor: {{r.teacher.username}}</li>
+                <br>
+            {% endfor %}
+            </ul>
+    {% endblock %}

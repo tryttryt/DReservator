@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+    {% block content %}
+        <h1>Znajdź użytkownika:</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+                <table>
+            {{ form.as_table }}
+            </table>
+            <input type="submit" class="btn btn-secondary" value="Szukaj" />
+            </form>
+            <br>
+            <ul>
+            {% for s in students %}
+                <li>Imię i nazwisko: {{s.first_name}} {{s.last_name}}</li>
+                <li>Adres: {{s.users.address}}</li>
+                <li>Username: {{s.username}}</li>
+                <li>Telefon: {{s.users.phone}}</li>
+                <li>Email: {{s.email}}</li>
+            </ul>
+            {% endfor %}
+        <h1>Rezerwacje użytkownika: </h1>
+            {% for r in reservation %}
+            <ul>
+            <li>Data: {{r.date}}</li>
+            <li>Od: {{r.reservation_time_start}}</li>
+            <li>Do: {{r.reservation_time_end}}</li>
+            <li>Sala: {{r.rooms.name}}</li>
+            <li>Rodzaj zajęć: {{r.activities_type}}</li>
+            <li>Instruktor: {{r.teacher.username}}</li>
+            </ul>
+            {% endfor %}
+    {% endblock %}
